@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace Demo.Restuarants.API.XUnit.Tests.Controllers;
+namespace Demo.Restuarants.API.Tests.Controllers;
 
 public class RestuarantControllerTests
 {
@@ -32,6 +32,17 @@ public class RestuarantControllerTests
     }
 
     [Fact]
+    public async Task ListRestuarants_UnhandledException_ThrowsException()
+    {
+        // arrange
+        FilterQueryParameters mockQueryParameters = new();
+        _mockOrchestration.Setup(r => r.ListRestuarants(It.IsAny<FilterQueryParametersBO>())).ThrowsAsync(new Exception());
+
+        // act and assert
+        await Assert.ThrowsAsync<Exception>(async () => await _controller.ListRestuarants(mockQueryParameters));
+    }
+
+    [Fact]
     public async Task ListRestuarants_QueryCompleted_ReturnsOk()
     {
         // arrange
@@ -54,7 +65,7 @@ public class RestuarantControllerTests
     }
 
     [Fact]
-    public async Task GetRestuarant_UnhandledException_ReturnsError()
+    public async Task GetRestuarant_UnhandledException_ThrowsException()
     {
         // arrange
         string mockId = "12345";
@@ -99,7 +110,7 @@ public class RestuarantControllerTests
     }
 
     [Fact]
-    public async Task CreateRestuarant_UnhandledException_ReturnsError()
+    public async Task CreateRestuarant_UnhandledException_ThrowsException()
     {
         // arrange
         CreateRestuarantRequest mockRequest = new();
@@ -127,6 +138,20 @@ public class RestuarantControllerTests
     }
 
     [Fact]
+    public async Task CreateManyRestuarants_UnhandledException_ThrowsException()
+    {
+        // arrange
+        CreateRestuarantRequest[] mockRequest = [
+            new CreateRestuarantRequest(),
+            new CreateRestuarantRequest()
+        ];
+        _mockOrchestration.Setup(r => r.CreateManyRestuarants(It.IsAny<CreateRestuarantRequestBO[]>())).ThrowsAsync(new Exception());
+
+        // act and assert
+        await Assert.ThrowsAsync<Exception>(async () => await _controller.CreateManyRestuarants(mockRequest));
+    }
+
+    [Fact]
     public async Task CreateManyRestuarants_OperationComplete_ReturnsOk()
     {
         // arrange
@@ -147,7 +172,7 @@ public class RestuarantControllerTests
     }
 
     [Fact]
-    public async Task UpdateRestuarant_UnhandledException_ReturnsError()
+    public async Task UpdateRestuarant_UnhandledException_ThrowsException()
     {
         // arrange
         string mockId = "12345";
@@ -177,7 +202,7 @@ public class RestuarantControllerTests
     }
 
     [Fact]
-    public async Task RemoveRestuarant_UnhandledException_ReturnsError()
+    public async Task RemoveRestuarant_UnhandledException_ThrowsException()
     {
         // arrange
         string mockId = "12345";

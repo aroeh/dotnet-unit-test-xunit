@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Tests/">
-    <Project Path="Demo.Restuarants.API.XUnit.Tests/Demo.Restuarants.API.XUnit.Tests.csproj" />
+    <Project Path="Demo.Restuarants.API.Tests/Demo.Restuarants.API.Tests.csproj" />
+    <Project Path="Demo.Restuarants.Core.Tests/Demo.Restuarants.Core.Tests.csproj" Id="0f42b241-7df8-4949-9f7a-2100512af4c8" />
   </Folder>
   <Project Path="Demo.Restuarants.API/Demo.Restuarants.API.csproj" />
   <Project Path="Demo.Restuarants.API.Models/Demo.Restuarants.API.Models.csproj" Id="2f97261b-2ddc-4ef1-b304-aff171dae535" />
