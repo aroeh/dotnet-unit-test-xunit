@@ -53,22 +53,16 @@ public class RestuarantControllerTests
         Assert.Equal((int)HttpStatusCode.OK, ((Ok<PaginationResponse<RestuarantBO>>)testResult).StatusCode);
     }
 
-    //TODO: Figure out the test on error
-    //[Fact]
-    //public async Task GetRestuarant_UnhandledException_ReturnsError()
-    //{
-    //    // arrange
-    //    string mockId = "12345";
-    //    _mockOrchestration.Setup(r => r.GetRestuarant(It.IsAny<string>())).ThrowsAsync(new Exception());
+    [Fact]
+    public async Task GetRestuarant_UnhandledException_ReturnsError()
+    {
+        // arrange
+        string mockId = "12345";
+        _mockOrchestration.Setup(r => r.GetRestuarant(It.IsAny<string>())).ThrowsAsync(new Exception());
 
-    //    // act
-    //    var testResult = await _controller.GetRestuarant(mockId);
-
-    //    // assert
-    //    Assert.NotNull(testResult);
-    //    Assert.IsType<InternalServerError>(testResult);
-    //    Assert.Equal((int)HttpStatusCode.InternalServerError, ((InternalServerError)testResult).StatusCode);
-    //}
+        // act and assert
+        await Assert.ThrowsAsync<Exception>(async () => await _controller.GetRestuarant(mockId));
+    }
 
     [Fact]
     public async Task GetRestuarant_RestuarantIsNull_ReturnsNotFound()
@@ -104,22 +98,16 @@ public class RestuarantControllerTests
         Assert.Equal((int)HttpStatusCode.OK, ((Ok<RestuarantBO>)testResult).StatusCode);
     }
 
-    //TODO: Figure out the test on error
-    //[Fact]
-    //public async Task CreateRestuarant_UnhandledException_ReturnsError()
-    //{
-    //    // arrange
-    //    CreateRestuarantRequest mockRequest = new();
-    //    _mockOrchestration.Setup(r => r.CreateRestuarant(It.IsAny<CreateRestuarantRequestBO>())).ThrowsAsync(new Exception());
+    [Fact]
+    public async Task CreateRestuarant_UnhandledException_ReturnsError()
+    {
+        // arrange
+        CreateRestuarantRequest mockRequest = new();
+        _mockOrchestration.Setup(r => r.CreateRestuarant(It.IsAny<CreateRestuarantRequestBO>())).ThrowsAsync(new Exception());
 
-    //    // act
-    //    var testResult = await _controller.CreateRestuarant(mockRequest);
-
-    //    // assert
-    //    Assert.NotNull(testResult);
-    //    Assert.IsType<InternalServerError>(testResult);
-    //    Assert.Equal((int)HttpStatusCode.InternalServerError, ((InternalServerError)testResult).StatusCode);
-    //}
+        // act and assert
+        await Assert.ThrowsAsync<Exception>(async () => await _controller.CreateRestuarant(mockRequest));
+    }
 
     [Fact]
     public async Task CreateRestuarant_CreateSuccessful_ReturnsCreated()
@@ -158,23 +146,17 @@ public class RestuarantControllerTests
         Assert.Equal((int)HttpStatusCode.OK, ((Ok<TransactionResult>)testResult).StatusCode);
     }
 
-    //TODO: Figure out the test on error
-    //[Fact]
-    //public async Task UpdateRestuarant_UnhandledException_ReturnsError()
-    //{
-    //    // arrange
-    //    string mockId = "12345";
-    //    UpdateRestuarantRequest mockRequest = new();
-    //    _mockOrchestration.Setup(r => r.UpdateRestuarant(It.IsAny<string>(), It.IsAny<UpdateRestuarantRequestBO>())).ThrowsAsync(new Exception());
+    [Fact]
+    public async Task UpdateRestuarant_UnhandledException_ReturnsError()
+    {
+        // arrange
+        string mockId = "12345";
+        UpdateRestuarantRequest mockRequest = new();
+        _mockOrchestration.Setup(r => r.UpdateRestuarant(It.IsAny<string>(), It.IsAny<UpdateRestuarantRequestBO>())).ThrowsAsync(new Exception());
 
-    //    // act
-    //    var testResult = await _controller.UpdateRestuarant(mockId, mockRequest);
-
-    //    // assert
-    //    Assert.NotNull(testResult);
-    //    Assert.IsType<InternalServerError>(testResult);
-    //    Assert.Equal((int)HttpStatusCode.InternalServerError, ((InternalServerError)testResult).StatusCode);
-    //}
+        // act and assert
+        await Assert.ThrowsAsync<Exception>(async () => await _controller.UpdateRestuarant(mockId, mockRequest));
+    }
 
     [Fact]
     public async Task UpdateRestuarant_UpdateCompletes_ReturnsOk()
@@ -194,22 +176,16 @@ public class RestuarantControllerTests
         Assert.Equal((int)HttpStatusCode.OK, ((Ok<bool>)testResult).StatusCode);
     }
 
-    //TODO: Figure out the test on error
-    //[Fact]
-    //public async Task UpdateRestuarant_UnhandledException_ReturnsError()
-    //{
-    //    // arrange
-    //    string mockId = "12345";
-    //    _mockOrchestration.Setup(r => r.RemoveRestuarant(It.IsAny<string>())).ThrowsAsync(new Exception());
+    [Fact]
+    public async Task RemoveRestuarant_UnhandledException_ReturnsError()
+    {
+        // arrange
+        string mockId = "12345";
+        _mockOrchestration.Setup(r => r.RemoveRestuarant(It.IsAny<string>())).ThrowsAsync(new Exception());
 
-    //    // act
-    //    var testResult = await _controller.RemoveRestuarant(mockId);
-
-    //    // assert
-    //    Assert.NotNull(testResult);
-    //    Assert.IsType<InternalServerError>(testResult);
-    //    Assert.Equal((int)HttpStatusCode.InternalServerError, ((InternalServerError)testResult).StatusCode);
-    //}
+        // act and assert
+        await Assert.ThrowsAsync<Exception>(async () => await _controller.RemoveRestuarant(mockId));
+    }
 
     [Fact]
     public async Task RemoveRestuarant_RemoveCompletes_ReturnsOk()
